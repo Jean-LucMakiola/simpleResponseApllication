@@ -25,9 +25,20 @@ public class UserController {
 
         return userService.findAll();
     }
-    @GetMapping("/user")
+    @GetMapping("/user/id")
     public Optional<User> findUserByID(@RequestParam Integer id) {
         return userService.findUserByID(id);
+    }
+
+    @GetMapping("/user/name")
+    public List<User> findByName(@RequestParam String name) {
+        return userService.findByName(name);
+    }
+
+
+    @GetMapping("/user/email")
+    public List<User> findByEmail(@RequestParam String email) {
+        return userService.findByEmail(email);
     }
 
     /*@DeleteMapping("/user")

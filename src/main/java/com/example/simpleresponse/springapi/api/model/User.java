@@ -10,7 +10,6 @@ import lombok.Data;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(columnDefinition = "serial")
     private int id;
     private String name;
     private String email;
@@ -22,9 +21,7 @@ public class User {
 //        this.email = email;
 //    }
 
-    public User() {
-
-    }
+    public User() {}
 
     public int getId() {
         return id;

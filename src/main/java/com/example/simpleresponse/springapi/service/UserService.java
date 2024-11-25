@@ -30,6 +30,13 @@ public class UserService {
         return userRepository.findById(id); // Returns an Optional<User>
     }
 
+    public List<User> findByName(String name) {
+        return userRepository.findByName(name);
+    }
+
+    public List<User> findByEmail(String email) {
+        return userRepository.findByEmail(email);
+    }
     /*public void deleteUserById(Integer id) {
         // Find the user to delete
         User userToDelete = userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
