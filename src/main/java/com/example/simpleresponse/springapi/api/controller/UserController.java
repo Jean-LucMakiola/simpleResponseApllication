@@ -1,7 +1,6 @@
 package com.example.simpleresponse.springapi.api.controller;
 
 import com.example.simpleresponse.springapi.api.model.User;
-import com.example.simpleresponse.springapi.api.repo.UserRepo;
 import com.example.simpleresponse.springapi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -14,15 +13,13 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    @PostMapping("/users")
+    @PostMapping("/user")
     public User addUser(@RequestBody User user) {
         userService.addUser(user);
         return user;
-        //userRepo.save(user);
     }
     @GetMapping("/users")
     public List<User> getAllUsers() {
-
         return userService.findAll();
     }
     @GetMapping("/user/id")
@@ -41,9 +38,26 @@ public class UserController {
         return userService.findByEmail(email);
     }
 
-    /*@DeleteMapping("/user")
+    @DeleteMapping("/user")
     public void deleteUser(@RequestParam Integer id) {
         userService.deleteUserById(id);
-    }*/
+    }
+
+    @PutMapping("/user")
+    public void updateUser(@RequestParam int id,@RequestBody User user) {
+        userService.updateUser(id ,user);
+    }
+
+    @PatchMapping("/user/email")
+    public Optional<User> updateUserEmail(@RequestParam int id, @RequestParam String email) {
+        userService.updateUserEmail(id, email);
+        return userService.findUserByID(id);
+    }
+    @PatchMapping("/user/name")
+    public Optional<User> updateUserName(@RequestParam int id, @RequestParam String name) {
+        userService.updateUserName(id, name);
+        return userService.findUserByID(id);
+    }
+
 
 }

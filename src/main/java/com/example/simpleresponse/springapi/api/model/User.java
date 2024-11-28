@@ -2,48 +2,36 @@ package com.example.simpleresponse.springapi.api.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
+
+import java.util.List;
 
 
 @Data
 @Entity
 @Table(name = "app_users")
 public class User {
+    @Setter
+    @Getter
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(generator = "custom-id-generator")
+    @GenericGenerator(name = "custom-id-generator", strategy = "com.example.simpleresponse.springapi.service.CustomIdGenerator")
     private int id;
+    @Setter
+    @Getter
     private String name;
+    @Setter
+    @Getter
     private String email;
 
 
-//    public User(int id, String name, String email) {
-//        this.id = id;
-//        this.name = name;
-//        this.email = email;
-//    }
-
     public User() {}
 
-    public int getId() {
-        return id;
-    }
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+   
+    private List<Device> devices;
 
-    public void setId(int id) {
-        this.id = id;
-    }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
 }
