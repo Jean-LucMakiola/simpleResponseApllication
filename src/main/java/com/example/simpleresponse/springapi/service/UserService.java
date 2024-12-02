@@ -4,7 +4,7 @@ import com.example.simpleresponse.springapi.api.model.User;
 import com.example.simpleresponse.springapi.api.repo.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import java.util.*;
 import java.util.List;
 import java.util.Optional;
 
@@ -47,7 +47,7 @@ public class UserService {
         userRepository.delete(userToDelete);
     }
 
-    public void updateUser(int id, User user) {
+    public void updateUser(Integer id, User user) {
         Optional<User> userToUpdate = findUserByID(id);
         System.out.println("Hallo"+userToUpdate.isPresent());
         if (userToUpdate.isPresent()) {
